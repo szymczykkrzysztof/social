@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS folowers(
+CREATE TABLE IF NOT EXISTS followers(
     user_id BIGINT NOT NULL ,
     follower_id BIGINT NOT NULL ,
     created_at timestamp(0) with time zone NOT NULL DEFAULT NOW(),

@@ -7,10 +7,6 @@ import (
 	"github.com/lib/pq"
 )
 
-var (
-	ErrNotFound = errors.New("resource not found")
-)
-
 type Post struct {
 	ID        int64     `json:"id"`
 	Content   string    `json:"content"`

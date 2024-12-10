@@ -3,10 +3,15 @@ package store
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"time"
 )
 
-var QueryTimeoutDuration = 5 * time.Second
+var (
+	ErrNotFound          = errors.New("resource not found")
+	ErrConflict          = errors.New("resource already exists")
+	QueryTimeoutDuration = 5 * time.Second
+)
 
 type Storage struct {
 	Posts interface {
@@ -31,8 +36,9 @@ type Storage struct {
 
 func NewStorage(db *sql.DB) Storage {
 	return Storage{
-		Posts:    &PostStore{db: db},
-		Users:    &UserStore{db},
-		Comments: &CommentsStore{db},
+		Posts:     &PostStore{db: db},
+		Users:     &UserStore{db},
+		Comments:  &CommentsStore{db},
+		Followers: &FollowerStore{db},
 	}
 }
